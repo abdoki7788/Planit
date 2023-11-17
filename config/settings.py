@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     "tailwind",
 
     ## Apps
+    "theme.apps.ThemeConfig",
     "landing.apps.LandingConfig",
-    "theme.apps.ThemeConfig"
+    "accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [
