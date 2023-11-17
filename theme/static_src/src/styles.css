@@ -1,3 +1,24 @@
+@font-face {
+    font-family: Vazir;
+    src: url("/static/fonts/Vazirmatn[wght].woff2") format('woff2-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Lalezar;
+    src: url("/static/fonts/Lalezar-Regular.ttf");
+}
+
+@font-face {
+    font-family: Mikhak;
+    src: url("/static/fonts/Mikhak[DSTY\,KSHD\,wght].woff2") format('woff2-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

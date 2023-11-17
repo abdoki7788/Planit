@@ -1,19 +1,18 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 	<head>
     <title>Django Tailwind</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="{% static "tabler-icons/tabler-icons.min.css" %}">
 		{% tailwind_css %}
 	</head>
 
-	<body class="bg-gray-50 font-serif leading-normal tracking-normal">
-		<div class="container mx-auto">
-			<section class="flex items-center justify-center h-screen">
-				<h1 class="text-5xl">Django + Tailwind = ❤️</h1>
-			</section>
-		</div>
+	<body class="{% block body-style %}{% endblock body-style %}" {% block body-attrs %}{% endblock body-attrs %}>
+		{% block body-content %}
+			<h1>testy</h1>
+		{% endblock body-content %}
 	</body>
 </html>

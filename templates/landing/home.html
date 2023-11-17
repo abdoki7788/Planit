@@ -1,1 +1,88 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block body-style %}bg-gradient-to-br from-[#0b001f] to-[#3a4451] min-h-[100vh]{% endblock body-style %}
+
+{% block body-content %}
+<div class="container mx-auto max-sm:px-4">
+    <header class="w-full">
+        <nav class="flex justify-between py-4 items-center">
+            <img src="{% static "logos/logo.png" %}" class="3-[130px]">
+            <ul class="flex max-sm:hidden">
+                <li class="font-lalezar text-lg text-normal-text mx-6">
+                    <a href="/">خانه</a>
+                </li>
+                <li class="font-lalezar text-lg text-normal-text mx-6">
+                    <a href="/">مستندات</a>
+                </li>
+                <li class="font-lalezar text-lg text-normal-text mx-6">
+                    <a href="/">تماس با ما</a>
+                </li>
+                <li class="font-lalezar text-lg text-normal-text mx-6">
+                    <a href="/">درباره ما</a>
+                </li>
+                <li class="font-lalezar text-lg text-normal-text mx-6">
+                    <a href="/">بلاگ</a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <div class="mt-20 mx-auto max-w-[768px] flex flex-col text-center items-center">
+            <h1 class="text-6xl font-lalezar text-white max-md:text-5xl max-sm:4xl">
+                با <span class="text-transparent bg-clip-text bg-gradient-to-br from-[#414B65] to-[#2200FF]">پلنیت</span> همیشه رو کار باش و از هیچی عقب نمون !
+            </h1>
+            <p class="text-description-text font-mikhak mt-6">
+                پلنیت ، نرم افزار برنامه ریزی و نظم دادن به کار های شماست که میتوانید به صورت رایگان از آن استفاده کنید و از قابلیت های فوق العاده آن بهره مند شوید !
+            </p>
+            <a href="/" class="bg-button-blue py-2 px-3 mt-12 text-normal-text rounded-lg inline font-lalezar">
+                شروع به کار !
+            </a>
+        </div>
+    </header>
+
+    <div class="flex mt-24 justify-around flex-wrap">
+        <article class="bg-feature-box flex flex-col items-center max-w-[256px] h-56 text-white px-8 py-4 rounded-lg my-6 mx-4">
+            <div class="flex justify-center w-full font-mikhak items-center text-2xl">
+                <i class="ti ti-coin text-[#00A3FF] ml-1"></i> کاملا رایگان
+            </div>
+            <div class="mt-4 w-full text-sm font-vazir text-description-text text-center">
+                شما میتوانید از تمام قابلیت های وبسایت پلنیت به صورت کامل رایگان و نامحدود استفاده کنید و از قابلیت های فوق العاده آن استفاده  کنید !
+            </div>
+        </article>
+        <article class="bg-feature-box flex flex-col items-center max-w-[256px] h-56 text-white px-8 py-4 rounded-lg my-6 mx-4">
+            <div class="flex justify-center w-full font-mikhak items-center text-2xl">
+                <i class="ti ti-coin text-[#00A3FF] ml-1"></i> کاملا رایگان
+            </div>
+            <div class="mt-4 w-full text-sm font-vazir text-description-text text-center">
+                شما میتوانید از تمام قابلیت های وبسایت پلنیت به صورت کامل رایگان و نامحدود استفاده کنید و از قابلیت های فوق العاده آن استفاده  کنید !
+            </div>
+        </article>
+        <article class="bg-feature-box flex flex-col items-center max-w-[256px] h-56 text-white px-8 py-4 rounded-lg my-6 mx-4">
+            <div class="flex justify-center w-full font-mikhak items-center text-2xl">
+                <i class="ti ti-coin text-[#00A3FF] ml-1"></i> کاملا رایگان
+            </div>
+            <div class="mt-4 w-full text-sm font-vazir text-description-text text-center">
+                شما میتوانید از تمام قابلیت های وبسایت پلنیت به صورت کامل رایگان و نامحدود استفاده کنید و از قابلیت های فوق العاده آن استفاده  کنید !
+            </div>
+        </article>
+        <article class="bg-feature-box flex flex-col items-center max-w-[256px] h-56 text-white px-8 py-4 rounded-lg my-6 mx-4">
+            <div class="flex justify-center w-full font-mikhak items-center text-2xl">
+                <i class="ti ti-coin text-[#00A3FF] ml-1"></i> کاملا رایگان
+            </div>
+            <div class="mt-4 w-full text-sm font-vazir text-description-text text-center">
+                شما میتوانید از تمام قابلیت های وبسایت پلنیت به صورت کامل رایگان و نامحدود استفاده کنید و از قابلیت های فوق العاده آن استفاده  کنید !
+            </div>
+        </article>
+    </div>
+</div>
+<footer class="bg-[#2B313B] py-4 mt-24">
+    <div class="container mx-auto flex justify-between items-center">
+        <img src="{% static "logos/logo.png" %}" alt="" srcset="">
+        <p class="text-description-text">
+            <i class="ti ti-copyright"></i>
+            تمامی حقوق این وبسایت متعلق به پلنیت میباشد
+        </p>
+    </div>
+</footer>
+{% endblock body-content %}

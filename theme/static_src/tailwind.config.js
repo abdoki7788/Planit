@@ -42,7 +42,19 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                "normal-text": "#D3D3D3",
+                "description-text": "#BABABA",
+                "button-blue": "#597EFF",
+                "feature-box": "#182B36"
+            },
+            fontFamily: {
+                "vazir": ["Vazir"],
+                "mikhak": ["Mikhak"],
+                "lalezar": ["Lalezar"],
+            }
+        },
     },
     plugins: [
         /**
