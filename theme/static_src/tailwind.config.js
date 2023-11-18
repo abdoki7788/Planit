@@ -45,6 +45,7 @@ module.exports = {
         extend: {
             colors: {
                 "normal-text": "#D3D3D3",
+                "placeholder-gray": "#909090",
                 "description-text": "#BABABA",
                 "button-blue": "#597EFF",
                 "feature-box": "#182B36"
