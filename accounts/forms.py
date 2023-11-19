@@ -1,3 +1,4 @@
+from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import BaseUserCreationForm
@@ -26,3 +27,8 @@ class RegisterForm(BaseUserCreationForm):
             )
         else:
             return email
+
+
+class LoginForm(forms.ModelForm):
+    email = forms.EmailField(max_length=254)
+    password = forms.CharField(max_length=65, widget=forms.PasswordInput)

@@ -9,10 +9,13 @@
 <img src="{% static "logos/logo.png" %}" class="mb-8">
 <form method="POST" class="flex flex-col bg-feature-box rounded-lg md:w-96 max-md:max-w-[384px] sm:px-10 px-8 max-sm:mx-2 py-6 shadow-[0px_4px_50px_2px_#00000025]">
     {% csrf_token %}
+    {% for error in form.non_field_errors %}
+    <p class="text-sm text-red-500 mt-2">{{error}}</p>
+    {% endfor %}
     <div id="fields">
         {% block fields %}{% endblock fields %}
     </div>
-    <button type="submit" class="bg-[#191C27] text-white rounded-md mt-8 w-full py-3">ثبت نام</button>
+    <button type="submit" class="bg-[#191C27] text-white rounded-md mt-8 w-full py-3">{% block button-name %}{% endblock button-name %}</button>
     <p class="text-white text-sm mt-4">
         {% block extra-links %}{% endblock extra-links %}
     </p>

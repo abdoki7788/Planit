@@ -143,3 +143,4 @@ INTERNAL_IPS = [
 TAILWIND_APP_NAME = 'theme'
 
 AUTH_USER_MODEL = "accounts.User"
+LOGIN_REDIRECT_URL = "landing:home"

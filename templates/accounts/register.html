@@ -5,20 +5,20 @@
 {% block fields %}
 <div class="relative mt-6 w-full shadow-[0px_5px_35px_2px_#1f1f1f50]">
     <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-      <i class="ti ti-at text-2xl text-placeholder-gray"></i>
-    </div>
-    {% render_field form.email class="font-vazir text-sm rounded-md block w-full ps-11 p-3 bg-[#14242E] placeholder-placeholder-gray text-white border-none" placeholder="ایمیل" %}
-</div>
-{% for error in form.email.errors %}
-<p class="text-sm text-red-500 mt-2">{{error}}</p>
-{% endfor %}
-<div class="relative mt-6 w-full shadow-[0px_5px_35px_2px_#1f1f1f50]">
-    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
       <i class="ti ti-user text-2xl text-placeholder-gray"></i>
     </div>
     {% render_field form.username class="font-vazir text-sm rounded-md block w-full ps-11 p-3 bg-[#14242E] placeholder-placeholder-gray text-white border-none" placeholder="نام کاربری" %}
 </div>
 {% for error in form.username.errors %}
+<p class="text-sm text-red-500 mt-2">{{error}}</p>
+{% endfor %}
+<div class="relative mt-6 w-full shadow-[0px_5px_35px_2px_#1f1f1f50]">
+    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+      <i class="ti ti-at text-2xl text-placeholder-gray"></i>
+    </div>
+    {% render_field form.email class="font-vazir text-sm rounded-md block w-full ps-11 p-3 bg-[#14242E] placeholder-placeholder-gray text-white border-none" placeholder="ایمیل" %}
+</div>
+{% for error in form.email.errors %}
 <p class="text-sm text-red-500 mt-2">{{error}}</p>
 {% endfor %}
 <div class="relative mt-6 w-full shadow-[0px_5px_35px_2px_#1f1f1f50]">
@@ -41,10 +41,11 @@
 {% endfor %}
 {% endblock fields %}
 
+{% block button-name %}ثبت نام{% endblock button-name %}
 
 {% block extra-links %}
 از قبل اکانت داری ؟‌
-<a href="login" class="text-[#4ED2FC]"> ورود</a>
+<a href="/" class="text-[#4ED2FC]"> ورود</a>
 {% endblock extra-links %}
 
 
