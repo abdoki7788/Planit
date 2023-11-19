@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "theme.apps.ThemeConfig",
     "landing.apps.LandingConfig",
     "accounts.apps.AccountsConfig",
+    "dashboard.apps.DashboardConfig",
 ]
 
 MIDDLEWARE = [
