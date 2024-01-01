@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     ## 3rd Party
-    "debug_toolbar",
+    # "debug_toolbar",
     "widget_tweaks",
     "tailwind",
 
@@ -59,7 +59,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
     # "debug_panel.middleware.DebugPanelMiddleware",
 ]
 
@@ -142,6 +142,8 @@ INTERNAL_IPS = [
 ]
 
 TAILWIND_APP_NAME = 'theme'
+
+LOGIN_URL = "accounts:login"
 
 AUTH_USER_MODEL = "accounts.User"
 LOGIN_REDIRECT_URL = "landing:home"

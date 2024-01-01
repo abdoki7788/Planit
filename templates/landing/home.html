@@ -24,7 +24,11 @@
                     <a href="/">بلاگ</a>
                 </li>
                 <li class="bg-button-blue py-2 px-3 text-normal-text rounded-lg inline font-lalezar">
+                    {% if user.is_authenticated %}
+                    <a href="{% url "dashboard:overview" %}">داشبورد</a>
+                    {% else %}
                     <a href="{% url "accounts:register" %}">شروع به کار !</a>
+                    {% endif %}
                 </li>
             </ul>
 
@@ -37,9 +41,11 @@
             <p class="text-description-text font-mikhak mt-6">
                 پلنیت ، نرم افزار برنامه ریزی و نظم دادن به کار های شماست که میتوانید به صورت رایگان از آن استفاده کنید و از قابلیت های فوق العاده آن بهره مند شوید !
             </p>
-            <a href="/" class="bg-button-blue py-2 px-3 mt-12 text-normal-text rounded-lg inline font-lalezar">
-                شروع به کار !
-            </a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url "dashboard:overview" %}" class="bg-button-blue py-2 px-3 mt-12 text-normal-text rounded-lg inline font-lalezar">داشبورد</a>
+                    {% else %}
+                    <a href="{% url "accounts:register" %}" class="bg-button-blue py-2 px-3 mt-12 text-normal-text rounded-lg inline font-lalezar">شروع به کار !</a>
+                    {% endif %}
         </div>
     </header>
 
@@ -54,26 +60,27 @@
         </article>
         <article class="bg-feature-box flex flex-col items-center max-w-[256px] h-56 text-white px-8 py-4 rounded-lg my-6 mx-4">
             <div class="flex justify-center w-full font-mikhak items-center text-2xl">
-                <i class="ti ti-coin text-[#00A3FF] ml-1"></i> کاملا رایگان
+                <i class="ti ti-meteor text-[#e27114] ml-1"></i> All in One !
             </div>
             <div class="mt-4 w-full text-sm font-vazir text-description-text text-center">
-                شما میتوانید از تمام قابلیت های وبسایت پلنیت به صورت کامل رایگان و نامحدود استفاده کنید و از قابلیت های فوق العاده آن استفاده  کنید !
+                شما همه ابزار های مورد نیاز برای مدیریت پروژه و برنامه ریزی شخصی نیاز دارید را در این وبسایت در دسترس دارید و بدون زحمتی میتوانید از آنها استفاده کنید !
             </div>
         </article>
         <article class="bg-feature-box flex flex-col items-center max-w-[256px] h-56 text-white px-8 py-4 rounded-lg my-6 mx-4">
             <div class="flex justify-center w-full font-mikhak items-center text-2xl">
-                <i class="ti ti-coin text-[#00A3FF] ml-1"></i> کاملا رایگان
+                <i class="ti ti-accessible text-[#ae00ff] ml-1"></i> دسترسی پذیری
             </div>
             <div class="mt-4 w-full text-sm font-vazir text-description-text text-center">
-                شما میتوانید از تمام قابلیت های وبسایت پلنیت به صورت کامل رایگان و نامحدود استفاده کنید و از قابلیت های فوق العاده آن استفاده  کنید !
+                طراحی استاندارد پلنیت به شما اجازه میدهد کد به راحتی به همه ابزار ها دسترسی داشته باشید و بهترین تجربه کاربری را به دست بیاورید !
             </div>
         </article>
         <article class="bg-feature-box flex flex-col items-center max-w-[256px] h-56 text-white px-8 py-4 rounded-lg my-6 mx-4">
             <div class="flex justify-center w-full font-mikhak items-center text-2xl">
-                <i class="ti ti-coin text-[#00A3FF] ml-1"></i> کاملا رایگان
+                <i class="ti ti-brand-asana text-[#33ff00] ml-1"></i> چند پلتفرمه
             </div>
             <div class="mt-4 w-full text-sm font-vazir text-description-text text-center">
-                شما میتوانید از تمام قابلیت های وبسایت پلنیت به صورت کامل رایگان و نامحدود استفاده کنید و از قابلیت های فوق العاده آن استفاده  کنید !
+                <span class="text-yellow-500">به زودی ! </span> <br>
+                شما میتوانید به برنامه ریزی ها و زمان بندی های خود در همه دستگاه هایتان دسترسی داشته باشید مانند تلفن همراه شما !
             </div>
         </article>
     </div>

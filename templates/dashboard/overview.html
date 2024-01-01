@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}داشبورد نمای کلی{% endblock title %}
+
+{% block body-style %}bg-[#202429] min-h-[100vh] flex{% endblock body-style %}
+
+{% block body-content %}
+<nav class="w-80 bg-[#28303A] flex flex-col p-4">
+    <div class="w-full flex justify-between items-center mb-4">
+        <img src="{% static "logos/logo.png" %}" class="w-28">
+        <i class="ti ti-x text-2xl text-icon-gray cursor-pointer hover:bg-slate-700 rounded-md"></i>
+    </div>
+    <ul id="menu" class="flex flex-col w-full my-4">
+        <li class="my-1">
+            <a href="/" class="w-full p-2 bg-[#2F3741] flex items-center text-menu-item text-md rounded-md">
+                <i class="ti ti-home text-xl mx-1 text-[#67A4FF]"></i>
+                نمای کلی
+            </a>
+        </li>
+        <li class="my-1">
+            <a href="/" class="w-full p-2 flex items-center text-menu-item text-md rounded-md">
+                <i class="ti ti-list-check text-xl mx-1 text-[#4CC98D]"></i>
+                کار ها
+            </a>
+        </li>
+        <li class="my-1">
+            <a href="/" class="w-full p-2 flex items-center text-menu-item text-md rounded-md">
+                <i class="ti ti-calendar-event text-xl mx-1 text-[#8F67FF]"></i>
+                تقویم
+            </a>
+        </li>
+        <li class="my-1">
+            <a href="/" class="w-full p-2 flex items-center text-menu-item text-md rounded-md">
+                <i class="ti ti-calendar-event text-xl mx-1 text-[#8F67FF]"></i>
+                تقویم
+            </a>
+        </li>
+        <li class="my-1">
+            <a href="/" class="w-full p-2 flex items-center text-menu-item text-md rounded-md">
+                <i class="ti ti-calendar-event text-xl mx-1 text-[#8F67FF]"></i>
+                تقویم
+            </a>
+        </li>
+    </ul>
+</nav>
+{% endblock body-content %}

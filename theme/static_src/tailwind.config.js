@@ -46,6 +46,8 @@ module.exports = {
             colors: {
                 "normal-text": "#D3D3D3",
                 "placeholder-gray": "#909090",
+                "icon-gray": "#C0C0C0",
+                "menu-item": "#EEEEEE",
                 "description-text": "#BABABA",
                 "button-blue": "#597EFF",
                 "feature-box": "#182B36"
