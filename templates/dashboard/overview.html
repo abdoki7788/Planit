@@ -3,45 +3,84 @@
 
 {% block title %}داشبورد نمای کلی{% endblock title %}
 
-{% block body-style %}bg-[#202429] min-h-[100vh] flex{% endblock body-style %}
+{% block body-style %}bg-[#202429] min-h-[100vh] flex justify-between{% endblock body-style %}
 
 {% block body-content %}
-<nav class="w-80 bg-[#28303A] flex flex-col p-4">
-    <div class="w-full flex justify-between items-center mb-4">
-        <img src="{% static "logos/logo.png" %}" class="w-28">
-        <i class="ti ti-x text-2xl text-icon-gray cursor-pointer hover:bg-slate-700 rounded-md"></i>
-    </div>
-    <ul id="menu" class="flex flex-col w-full my-4">
-        <li class="my-1">
-            <a href="/" class="w-full p-2 bg-[#2F3741] flex items-center text-menu-item text-md rounded-md">
-                <i class="ti ti-home text-xl mx-1 text-[#67A4FF]"></i>
-                نمای کلی
-            </a>
-        </li>
-        <li class="my-1">
-            <a href="/" class="w-full p-2 flex items-center text-menu-item text-md rounded-md">
-                <i class="ti ti-list-check text-xl mx-1 text-[#4CC98D]"></i>
-                کار ها
-            </a>
-        </li>
-        <li class="my-1">
-            <a href="/" class="w-full p-2 flex items-center text-menu-item text-md rounded-md">
-                <i class="ti ti-calendar-event text-xl mx-1 text-[#8F67FF]"></i>
-                تقویم
-            </a>
-        </li>
-        <li class="my-1">
-            <a href="/" class="w-full p-2 flex items-center text-menu-item text-md rounded-md">
-                <i class="ti ti-calendar-event text-xl mx-1 text-[#8F67FF]"></i>
-                تقویم
-            </a>
-        </li>
-        <li class="my-1">
-            <a href="/" class="w-full p-2 flex items-center text-menu-item text-md rounded-md">
-                <i class="ti ti-calendar-event text-xl mx-1 text-[#8F67FF]"></i>
-                تقویم
-            </a>
-        </li>
-    </ul>
-</nav>
+{% include "components/side-navbar.html" %}
+<main class="w-full mx-12">
+    <header class="flex flex-col my-6">
+        <div class="">
+            <div class="w-full my-4 p-2 bg-purple-300 bg-opacity-5 border border-y-0 border-x-2 border-purple-300 rounded-sm text-red-50 flex items-center text-sm relative">
+                <div class="w-8 h-8 rounded-full bg-purple-300 bg-opacity-10 flex justify-center items-center text-purple-300 mx-2">
+                    <i class="ti ti-pin"></i>
+                </div>
+                کد بزن وقت تلف نکن !
+    
+                <div class="w-8 h-8 rounded-full bg-purple-300 bg-opacity-10 flex justify-center items-center text-purple-300 mx-2 absolute left-1 hover:bg-opacity-20 cursor-pointer">
+                    <i class="ti ti-x"></i>
+                </div>
+            </div>
+            <div class="w-full my-4 p-2 bg-purple-300 bg-opacity-5 border border-y-0 border-x-2 border-purple-300 rounded-sm text-red-50 flex items-center text-sm relative">
+                <div class="w-8 h-8 rounded-full bg-purple-300 bg-opacity-10 flex justify-center items-center text-purple-300 mx-2">
+                    <i class="ti ti-pin"></i>
+                </div>
+                کد بزن وقت تلف نکن !
+    
+                <div class="w-8 h-8 rounded-full bg-purple-300 bg-opacity-10 flex justify-center items-center text-purple-300 mx-2 absolute left-1 hover:bg-opacity-20 cursor-pointer">
+                    <i class="ti ti-x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-between mt-8">
+            <div class="flex w-full">
+                <a href="/ " class="bg-cyan-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-cyan-200 min-w-[8rem] ml-5 rounded-lg flex flex-col justify-center items-center">
+                    <div>
+                        <span class="mx-auto w-8 h-8 rounded-full bg-cyan-300 bg-opacity-30 flex justify-center items-center mb-2">
+                            <i class="ti ti-list-check text-cyan-300"></i>
+                        </span>
+                        <span class="text-white text-sm my-4">کار های امروز</span>
+                    </div>
+                    <span class="text-cyan-300 mt-8">۱۲</span>
+                </a>
+
+                <a href="/ " class="bg-amber-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-amber-200 min-w-[8rem] ml-5 rounded-lg flex flex-col justify-center items-center">
+                    <div>
+                        <span class="mx-auto w-8 h-8 rounded-full bg-amber-300 bg-opacity-30 flex justify-center items-center mb-2">
+                            <i class="ti ti-alarm text-amber-300"></i>
+                        </span>
+                        <span class="text-white text-sm my-4">یادآوری ها</span>
+                    </div>
+                    <span class="text-amber-300 mt-8">۴</span>
+                </a>
+
+                <a href="/ " class="bg-red-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-red-200 min-w-[8rem] ml-5 rounded-lg flex flex-col justify-center items-center">
+                    <div>
+                        <span class="mx-auto w-8 h-8 rounded-full bg-red-300 bg-opacity-30 flex justify-center items-center mb-2">
+                            <i class="ti ti-alert-triangle text-red-300"></i>
+                        </span>
+                        <span class="text-white text-sm my-4">کار های تعویقی</span>
+                    </div>
+                    <span class="text-red-300 mt-8">۲۶</span>
+                </a>
+
+                <a href="/ " class="bg-purple-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-purple-200 min-w-[8rem] ml-5 rounded-lg flex flex-col justify-center items-center">
+                    <div>
+                        <span class="mx-auto w-8 h-8 rounded-full bg-purple-300 bg-opacity-30 flex justify-center items-center mb-2">
+                            <i class="ti ti-pin text-purple-300"></i>
+                        </span>
+                        <span class="text-white text-sm my-4">سنجاق ها</span>
+                    </div>
+                    <span class="text-purple-300 mt-8">۲۶</span>
+                </a>
+            </div>
+            <div class="font-lalezar text-white min-w-[10rem] bg-green-300 bg-opacity-5 rounded-md border border-green-600 flex flex-col items-center">
+                <span class="text-5xl my-8">
+                    <i class="ti ti-calendar text-4xl text-gray-200 mr-1"></i>
+                    ۳۱
+                </span>
+                <p class="text-gray-300">بهمن ۱۴۰۲</p>
+            </div>
+        </div>
+    </header>
+</main>
 {% endblock body-content %}

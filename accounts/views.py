@@ -1,6 +1,7 @@
 from typing import Any
 from django.shortcuts import render, redirect
 from django.views.generic import View
+from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 from . import forms
 
@@ -25,3 +26,8 @@ class Register(View):
 
 class Login(LoginView):
     template_name = "accounts/login.html"
+
+class Logout(View):
+    def get(self, request):
+        logout(request)
+        return redirect("landing:home")
