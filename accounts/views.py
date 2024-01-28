@@ -26,6 +26,7 @@ class Register(View):
 
 class Login(LoginView):
     template_name = "accounts/login.html"
+    success_url = "dashboard:home"
 
 class Logout(View):
     def get(self, request):

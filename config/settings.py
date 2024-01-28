@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # "debug_toolbar",
     "widget_tweaks",
     "tailwind",
+    "colorfield",
 
     ## Apps
     "theme.apps.ThemeConfig",
