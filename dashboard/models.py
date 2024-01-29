@@ -80,7 +80,7 @@ class Pin(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pins")
     date_added = jDateTimeField(auto_now_add=True)
     untill = jDateField(null=True, blank=True)
-    is_pinned = models.BooleanField()
+    is_pinned = models.BooleanField(default=True)
     name = models.CharField(max_length=64)
     description = models.TextField()
 
