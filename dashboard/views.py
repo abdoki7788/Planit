@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . import models
+from . import forms
 from jdatetime import date as jdate
 import persian
 
@@ -16,7 +17,8 @@ class DashboardOverview(LoginRequiredMixin, View):
             "overdue_tasks_count": persian.convert_en_numbers(request.user.tasks.filter(for_date__lt=jdate.today()).count()),
 
             "pins": request.user.pins.filter(untill__gte=jdate.today(), is_pinned=True),
-            "today": jdate.today()
+            "today": jdate.today(),
+            "task_form": forms.TaskCreateForm()
         }
         return render(request, "dashboard/overview.html", context=context)
 
@@ -26,3 +28,16 @@ class PinRemoveView(LoginRequiredMixin, View):
         pin.is_pinned = False
         pin.save()
         return redirect("dashboard:overview")
+
+class TaskAddView(LoginRequiredMixin, View):
+    form_class = forms.TaskCreateForm
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.user = request.user
+            task.save()
+            return redirect("dashboard:overview")
+        else:
+            print(form.errors)
+            return form.errors

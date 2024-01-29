@@ -44,7 +44,7 @@ class TaskModel(models.Model):
     description = models.TextField(blank=True, null=True)
     status = models.CharField(default="در انتظار", max_length=64)
     date_added = jDateTimeField(auto_now_add=True)
-    for_date = jDateField(default=jdate.today())
+    for_date = jDateField(blank=True, null=True,default=jdate.today())
     is_done = models.BooleanField(default=False)
     for_project = models.ForeignKey(ProjectModel, on_delete=models.DO_NOTHING, null=True, blank=True)
 
