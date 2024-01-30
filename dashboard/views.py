@@ -11,14 +11,16 @@ import persian
 class DashboardOverview(LoginRequiredMixin, View):
     def get(self, request):
         context = {
-            "today_tasks_count": persian.convert_en_numbers(request.user.tasks.filter(for_date=jdate.today()).count()),
+            "today_tasks_count": persian.convert_en_numbers(request.user.tasks.filter(for_date=jdate.today(), is_done=False).count()),
             "reminders_count": persian.convert_en_numbers(request.user.reminders.count()),
             "pins_count": persian.convert_en_numbers(request.user.pins.count()),
-            "overdue_tasks_count": persian.convert_en_numbers(request.user.tasks.filter(for_date__lt=jdate.today()).count()),
+            "overdue_tasks_count": persian.convert_en_numbers(request.user.tasks.filter(for_date__lt=jdate.today(), is_done=False).count()),
 
             "pins": request.user.pins.filter(untill__gte=jdate.today(), is_pinned=True),
             "today": jdate.today(),
-            "task_form": forms.TaskCreateForm()
+            "task_form": forms.TaskCreateForm(),
+
+            "tasks": request.user.tasks.filter(is_done=False)
         }
         return render(request, "dashboard/overview.html", context=context)
 

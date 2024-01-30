@@ -2,6 +2,7 @@
 {% load static %}
 {% load persian_number %}
 {% load persian_month %}
+{% load persian_date %}
 {% load widget_tweaks %}
 
 {% block title %}داشبورد نمای کلی{% endblock title %}
@@ -11,142 +12,184 @@
 {% block body-content %}
 {% include "components/side-navbar.html" %}
 <main class="w-full mx-12">
-    <header class="flex flex-col my-6">
-        <div class=""> 
+	<header class="flex flex-col my-6">
+		<div class="">
 			{% for pin in pins %}
-            <div class="w-full p-2 bg-purple-300 bg-opacity-5 border border-y-0 border-x-2 border-purple-300 text-red-50 flex items-center text-sm relative">
-                <div class="w-8 h-8 rounded-full bg-purple-300 bg-opacity-10 flex justify-center items-center text-purple-300 mx-2">
-                    <i class="ti ti-pin"></i>
-                </div>
+			<div
+				class="w-full p-2 bg-purple-300 bg-opacity-5 border border-y-0 border-x-2 border-purple-300 text-red-50 flex items-center text-sm relative">
+				<div
+					class="w-8 h-8 rounded-full bg-purple-300 bg-opacity-10 flex justify-center items-center text-purple-300 mx-2">
+					<i class="ti ti-pin"></i>
+				</div>
 				{{ pin.name }}
-    
-				<a href="{% url "dashboard:pin-remove" pin.id %}" class="w-8 h-8 rounded-full bg-purple-300 bg-opacity-10 flex justify-center items-center text-purple-300 mx-2 absolute left-1 hover:bg-opacity-20 cursor-pointer">
-                    <i class="ti ti-x"></i>
-                </a>
-            </div>
+
+				<a href="{% url "dashboard:pin-remove" pin.id %}"
+					class="w-8 h-8 rounded-full bg-purple-300 bg-opacity-10 flex justify-center items-center text-purple-300 mx-2 absolute left-1 hover:bg-opacity-20 cursor-pointer">
+					<i class="ti ti-x"></i>
+				</a>
+			</div>
 			{% endfor %}
-        </div>
-        <div class="flex justify-between mt-8">
-            <div class="flex w-full">
-                <a href="/ " class="bg-cyan-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-cyan-200 min-w-[8rem] ml-5 rounded-lg flex flex-col justify-center items-center">
-                    <div>
-                        <span class="mx-auto w-8 h-8 rounded-full bg-cyan-300 bg-opacity-30 flex justify-center items-center mb-2">
-                            <i class="ti ti-list-check text-cyan-300"></i>
-                        </span>
-                        <span class="text-white text-sm my-4">کار های امروز</span>
-                    </div>
+		</div>
+		<div class="flex justify-between mt-8">
+			<div class="flex w-full">
+				<a href="/ "
+					class="bg-cyan-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-cyan-200 min-w-[8rem] ml-5 rounded-lg flex flex-col justify-center items-center">
+					<div>
+						<span
+							class="mx-auto w-8 h-8 rounded-full bg-cyan-300 bg-opacity-30 flex justify-center items-center mb-2">
+							<i class="ti ti-list-check text-cyan-300"></i>
+						</span>
+						<span class="text-white text-sm my-4">کار های امروز</span>
+					</div>
 					<span class="text-cyan-300 mt-8">{{ today_tasks_count }}</span>
-                </a>
+				</a>
 
-                <a href="/ " class="bg-amber-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-amber-200 min-w-[8rem] ml-5 rounded-lg flex flex-col justify-center items-center">
-                    <div>
-                        <span class="mx-auto w-8 h-8 rounded-full bg-amber-300 bg-opacity-30 flex justify-center items-center mb-2">
-                            <i class="ti ti-alarm text-amber-300"></i>
-                        </span>
-                        <span class="text-white text-sm my-4">یادآوری ها</span>
-                    </div>
+				<a href="/ "
+					class="bg-amber-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-amber-200 min-w-[8rem] ml-5 rounded-lg flex flex-col justify-center items-center">
+					<div>
+						<span
+							class="mx-auto w-8 h-8 rounded-full bg-amber-300 bg-opacity-30 flex justify-center items-center mb-2">
+							<i class="ti ti-alarm text-amber-300"></i>
+						</span>
+						<span class="text-white text-sm my-4">یادآوری ها</span>
+					</div>
 					<span class="text-amber-300 mt-8">{{ reminders_count }}</span>
-                </a>
+				</a>
 
-                <a href="/ " class="bg-red-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-red-200 min-w-[8rem] ml-5 rounded-lg flex flex-col justify-center items-center">
-                    <div>
-                        <span class="mx-auto w-8 h-8 rounded-full bg-red-300 bg-opacity-30 flex justify-center items-center mb-2">
-                            <i class="ti ti-alert-triangle text-red-300"></i>
-                        </span>
-                        <span class="text-white text-sm my-4">کار های تعویقی</span>
-                    </div>
+				<a href="/ "
+					class="bg-red-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-red-200 min-w-[8rem] ml-5 rounded-lg flex flex-col justify-center items-center">
+					<div>
+						<span
+							class="mx-auto w-8 h-8 rounded-full bg-red-300 bg-opacity-30 flex justify-center items-center mb-2">
+							<i class="ti ti-alert-triangle text-red-300"></i>
+						</span>
+						<span class="text-white text-sm my-4">کار های تعویقی</span>
+					</div>
 					<span class="text-red-300 mt-8">{{ overdue_tasks_count }}</span>
-                </a>
+				</a>
 
-                <a href="/ " class="bg-purple-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-purple-200 min-w-[8rem] ml-5 rounded-lg flex flex-col justify-center items-center">
-                    <div>
-                        <span class="mx-auto w-8 h-8 rounded-full bg-purple-300 bg-opacity-30 flex justify-center items-center mb-2">
-                            <i class="ti ti-pin text-purple-300"></i>
-                        </span>
-                        <span class="text-white text-sm my-4">سنجاق ها</span>
-                    </div>
+				<a href="/ "
+					class="bg-purple-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-purple-200 min-w-[8rem] ml-5 rounded-lg flex flex-col justify-center items-center">
+					<div>
+						<span
+							class="mx-auto w-8 h-8 rounded-full bg-purple-300 bg-opacity-30 flex justify-center items-center mb-2">
+							<i class="ti ti-pin text-purple-300"></i>
+						</span>
+						<span class="text-white text-sm my-4">سنجاق ها</span>
+					</div>
 					<span class="text-purple-300 mt-8">{{ pins_count }}</span>
-                </a>
-            </div>
-            <div class="font-lalezar text-white min-w-[10rem] bg-green-300 bg-opacity-5 rounded-md border border-green-600 flex flex-col items-center">
-                <span class="text-5xl my-8">
-                    <i class="ti ti-calendar text-4xl text-gray-200 mr-1"></i>
+				</a>
+			</div>
+			<div
+				class="font-lalezar text-white min-w-[10rem] bg-green-300 bg-opacity-5 rounded-md border border-green-600 flex flex-col items-center">
+				<span class="text-5xl my-8">
+					<i class="ti ti-calendar text-4xl text-gray-200 mr-1"></i>
 					{{ today.day|persianize }}
-                </span>
+				</span>
 				<p class="text-gray-300">{{ today.month|pmonth }} {{ today.year|persianize }}</p>
-            </div>
-        </div>
-    </header>
+			</div>
+		</div>
+	</header>
 
-    <div id="lists" class="flex mt-16">
-        <div class="flex-grow flex flex-col items-center mx-4">
-            <h2 class="text-2xl text-cyan-300 font-lalezar mb-4">کار ها</h2>
-            <div data-modal-target="task-create-modal" data-modal-toggle="task-create-modal" class="font-lalezar bg-opacity-10 hover:bg-slate-400 hover:bg-opacity-5 flex text-gray-300 hover:text-white items-center rounded-md w-full text-sm py-2 cursor-pointer transition my-1.5">
-                <span class="w-6 h-6 rounded-full bg-gray-300 bg-opacity-30 flex justify-center items-center mx-2"><i class="ti ti-plus"></i></span>
-                افزودن تسک جدید
-            </div>
-        </div>
-        <div class="flex-grow flex flex-col items-center mx-4">
-            <h2 class="text-2xl text-amber-300 font-lalezar mb-4">عادت ها</h2>
-            <div class="font-lalezar bg-opacity-10 hover:bg-slate-400 hover:bg-opacity-5 flex text-gray-300 hover:text-white items-center rounded-md w-full text-sm py-2 cursor-pointer transition my-1.5">
-                <span class="w-6 h-6 rounded-full bg-gray-300 bg-opacity-30 flex justify-center items-center mx-2"><i class="ti ti-plus"></i></span>
-                افزودن یادآور
-            </div>
-        </div>
-        <div class="flex-grow flex flex-col items-center mx-4">
-            <h2 class="text-2xl text-red-300 font-lalezar mb-4">یادآور ها</h2>
-            <div class="font-lalezar bg-opacity-10 hover:bg-slate-400 hover:bg-opacity-5 flex text-gray-300 hover:text-white items-center rounded-md w-full text-sm py-2 cursor-pointer transition my-1.5">
-                <span class="w-6 h-6 rounded-full bg-gray-300 bg-opacity-30 flex justify-center items-center mx-2"><i class="ti ti-plus"></i></span>
-                افزودن عادت
-            </div>
-        </div>
-    </div>
+	<div id="lists" class="flex mt-16">
+		<div class="flex-grow flex flex-col items-center mx-4">
+			<h2 class="text-2xl text-cyan-300 font-lalezar mb-4">کار ها</h2>
+			{% for task in tasks %}
+			<div 
+				class="font-lalezar bg-opacity-5 bg-slate-400 flex text-gray-300 text-white items-center rounded-md w-full text-sm py-3 my-1.5 px-3">
+				<input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 focus:ring-blue-600 ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600 ml-4">
+				<div class="w-full flex justify-between items-center">
+					{{ task.name }}
+					<p class="text-xs text-red-400">
+						{{ task.for_date|pdate }}
+						<i class="ti ti-alarm-off mr-1"></i>
+					</p>
+				</div>
+			</div>
+			{% endfor %}
+			<div data-modal-target="task-create-modal" data-modal-toggle="task-create-modal"
+				class="font-lalezar bg-opacity-10 hover:bg-slate-600 hover:bg-opacity-5 flex text-gray-300 hover:text-white items-center rounded-md w-full text-sm py-2 cursor-pointer transition my-1.5">
+				<span class="w-6 h-6 rounded-full bg-gray-300 bg-opacity-30 flex justify-center items-center mx-2"><i
+						class="ti ti-plus"></i></span>
+				افزودن تسک جدید
+			</div>
+
+		</div>
+		<div class="flex-grow flex flex-col items-center mx-4">
+			<h2 class="text-2xl text-amber-300 font-lalezar mb-4">عادت ها</h2>
+			<div
+				class="font-lalezar bg-opacity-10 hover:bg-slate-400 hover:bg-opacity-5 flex text-gray-300 hover:text-white items-center rounded-md w-full text-sm py-2 cursor-pointer transition my-1.5">
+				<span class="w-6 h-6 rounded-full bg-gray-300 bg-opacity-30 flex justify-center items-center mx-2"><i
+						class="ti ti-plus"></i></span>
+				افزودن یادآور
+			</div>
+		</div>
+		<div class="flex-grow flex flex-col items-center mx-4">
+			<h2 class="text-2xl text-red-300 font-lalezar mb-4">یادآور ها</h2>
+			<div
+				class="font-lalezar bg-opacity-10 hover:bg-slate-400 hover:bg-opacity-5 flex text-gray-300 hover:text-white items-center rounded-md w-full text-sm py-2 cursor-pointer transition my-1.5">
+				<span class="w-6 h-6 rounded-full bg-gray-300 bg-opacity-30 flex justify-center items-center mx-2"><i
+						class="ti ti-plus"></i></span>
+				افزودن عادت
+			</div>
+		</div>
+	</div>
 </main>
-<div id="task-create-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-md max-h-full">
-        <div class="relative rounded-lg shadow bg-gray-700">
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 text-white font-lalezar">
-                    افزودن کار جدید
-                </h3>
-                <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white" data-modal-hide="task-create-modal">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="p-4 md:p-5">
+<div id="task-create-modal" tabindex="-1" aria-hidden="true"
+	class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+	<div class="relative p-4 w-full max-w-md max-h-full">
+		<div class="relative rounded-lg shadow bg-gray-700">
+			<div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-600">
+				<h3 class="text-xl font-semibold text-gray-900 text-white font-lalezar">
+					افزودن کار جدید
+				</h3>
+				<button type="button"
+					class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white"
+					data-modal-hide="task-create-modal">
+					<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+						viewBox="0 0 14 14">
+						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+					</svg>
+				</button>
+			</div>
+			<div class="p-4 md:p-5">
 				<form class="space-y-4" method="post" action="{% url "dashboard:task-add" %}">
 					{% csrf_token %}
-                    <div>
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 text-white">نام کار</label>
+					<div>
+						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 text-white">نام
+							کار</label>
 						{% render_field task_form.name class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" placeholder="میخوای چیکار کنی" %}
-                    </div>
-                    <div>
-                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900 text-white">توضیحات</label>
+					</div>
+					<div>
+						<label for="description"
+							class="block mb-2 text-sm font-medium text-gray-900 text-white">توضیحات</label>
 						{% render_field task_form.description name="description" id="description" placeholder="توضیحات کار" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" %}
-                    </div>
-                    <div>
-						<label for="for_date" class="block mb-2 text-sm font-medium text-gray-900 text-white">تاریخ</label>
-						{% render_field task_form.for_date data-jdp="true" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" %}
-                    </div>
-                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">ثبت کار</button>
-                </form>
-            </div>
-        </div>
-    </div>
+					</div>
+					<div>
+						<label for="for_date"
+							class="block mb-2 text-sm font-medium text-gray-900 text-white">تاریخ</label>
+						{% render_field task_form.for_date data-jdp="true" class="bg-gray-50 border border-gray-300	text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" %}
+					</div>
+					<button type="submit"
+						class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">ثبت
+						کار</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 <link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
 <script type="text/javascript" src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
 
 <script>
-let dp = jalaliDatepicker.startWatch({
-	separatorChars: {
-        date:"-",
-        between:" ",
-        time:":"
-    },
-});
+	let dp = jalaliDatepicker.startWatch({
+		separatorChars: {
+			date: "-",
+			between: " ",
+			time: ":"
+		},
+	});
 
 </script>
 {% endblock body-content %}
