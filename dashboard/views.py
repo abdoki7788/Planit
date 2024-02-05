@@ -1,3 +1,4 @@
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -20,7 +21,7 @@ class DashboardOverview(LoginRequiredMixin, View):
             "today": jdate.today(),
             "task_form": forms.TaskCreateForm(),
 
-            "tasks": request.user.tasks.filter(is_done=False)
+            "tasks": request.user.tasks.filter(is_done=False).order_by_date()
         }
         return render(request, "dashboard/overview.html", context=context)
 
@@ -43,3 +44,21 @@ class TaskAddView(LoginRequiredMixin, View):
         else:
             print(form.errors)
             return form.errors
+
+
+class TaskEditView(LoginRequiredMixin, View):
+    form_class = forms.TaskCreateForm
+    def setup(self, request, id, *args, **kwargs):
+        self.task = get_object_or_404(models.TaskModel, id=id)
+        return super().setup(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if request.user != self.task.user:
+            return PermissionDenied()
+        return super().dispatch(request, *args, **kwargs)
+    def post(self, request, id):
+        form = self.form_class(instance=self.task, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard:overview")
+        else:
+            print(form.errors)

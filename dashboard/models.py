@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Case, Value, When
 from django.contrib.auth import get_user_model
 from colorfield.fields import ColorField
 from django_jalali.db.models import jDateField, jDateTimeField
@@ -7,6 +8,15 @@ from jdatetime import date as jdate
 User = get_user_model()
 
 # Create your models here.
+
+class TaskQuerySet(models.QuerySet):
+    date_order = Case(
+        When(for_date=jdate.today(), then=Value(1)),
+        When(for_date__lt=jdate.today(), then=Value(2)),
+        When(for_date__gt=jdate.today(), then=Value(3)),
+    )
+    def order_by_date(self):
+        return self.alias(date_order=self.date_order).order_by("date_order", "for_date", "date_added")
 
 
 class ProjectModel(models.Model):
@@ -48,12 +58,21 @@ class TaskModel(models.Model):
     is_done = models.BooleanField(default=False)
     for_project = models.ForeignKey(ProjectModel, on_delete=models.DO_NOTHING, null=True, blank=True)
 
+    objects = TaskQuerySet.as_manager()
+
     def __str__(self):
         return f"{self.user} ==> {self.name}"
+
+    def is_overdue(self):
+        return jdate.today() > self.for_date
+
+    def is_for_today(self):
+        return jdate.today() == self.for_date
 
     class Meta:
         verbose_name = "کار"
         verbose_name_plural = "کارها"
+        ordering = ("-for_date",)
 
 
 class Reminder(models.Model):
