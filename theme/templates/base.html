@@ -9,6 +9,9 @@
 		<link rel="shortcut icon" type="image/png" href="{% static 'logos/favicon.png' %}"/>
 		<link rel="stylesheet" href="{% static "tabler-icons/tabler-icons.min.css" %}">
 		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+		<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+		<link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
+		<script type="text/javascript" src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
 		{% tailwind_css %}
 	</head>
 
@@ -17,5 +20,11 @@
 			<h1>testy</h1>
 		{% endblock body-content %}
 	</body>
+	<script>
+	document.body.addEventListener('htmx:configRequest', (event) => {
+		event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+	})
+    </script>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </html>

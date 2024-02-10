@@ -1,0 +1,33 @@
+{% load persian_number %}
+{% load persian_month %}
+{% load persian_date %}
+
+
+<div 
+	id="task-{{ task.id }}" class="font-lalezar bg-opacity-5 bg-slate-500 flex text-gray-300 text-white items-center rounded-md w-full text-sm py-3 my-1.5 px-3 {% if task.is_overdue %} border-red-300 {% elif task.is_for_today %} border-cyan-300 {% else %} border-green-300 {% endif %} ">
+	<input {% if task.is_done %}checked {% endif %} hx-post="{% url "dashboard:task-done" task.id %}" hx-target="#task-{{ task.id }}" hx-swap="outerHTML" hx-trigger="click" id="{{ task.id }}-checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+	<div class="w-full flex justify-between items-center mr-2">
+		<p {% if task.is_done %}style="text-decoration: line-through black;" {% endif %}>
+		{{ task.name }}
+		</p>
+		<div class="flex items-center">
+			<p class="text-xs {% if task.is_overdue %} text-red-400 {% elif task.is_for_today %} text-cyan-400 {% else %} text-green-400 {% endif %}">
+				{{ task.for_date|pdate }}
+				{% if task.is_overdue %}
+				<i class="ti ti-alarm-off mr-1"></i>
+				{% elif task.is_for_today %}
+				<i class="ti ti-clock-check mr-1"></i>
+				{% else %}
+				<i class="ti ti-clock mr-1"></i>
+				{% endif %}
+			</p>
+			<button class="flex justify-center items-center p-1 bg-gray-700 rounded mr-4 hover:bg-gray-600 transition" hx-get="{% url "dashboard:task-edit" task.id %}" hx-target="#main" hx-swap="afterend">
+				<i class="ti ti-edit"></i>
+			</button>
+			<button hx-trigger="click" hx-post="{% url "dashboard:task-delete" task.id %}" hx-target="#task-{{ task.id }}" hx-swap="outerHTML" class="flex justify-center items-center p-1 bg-red-700 rounded mr-2 hover:bg-red-600 transition bg-opacity-20">	
+				<i class="ti ti-trash text-red-300"></i>
+			</button>
+		</div>
+	</div>
+</div>
+

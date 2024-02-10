@@ -1,5 +1,5 @@
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import HttpResponse, get_object_or_404, redirect, render
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . import models
@@ -21,7 +21,7 @@ class DashboardOverview(LoginRequiredMixin, View):
             "today": jdate.today(),
             "task_form": forms.TaskCreateForm(),
 
-            "tasks": request.user.tasks.filter(is_done=False).order_by_date()
+            "tasks": request.user.tasks.filter(for_date=jdate.today())
         }
         return render(request, "dashboard/overview.html", context=context)
 
@@ -40,25 +40,38 @@ class TaskAddView(LoginRequiredMixin, View):
             task = form.save(commit=False)
             task.user = request.user
             task.save()
-            return redirect("dashboard:overview")
+            return render(request, "components/task.html", {"task": task})
         else:
             print(form.errors)
-            return form.errors
 
+class TaskDeleteView(LoginRequiredMixin, View):
+    def post(self, request, id):
+        task = get_object_or_404(models.TaskModel, id=id)
+        task.delete()
+        return HttpResponse("")
 
 class TaskEditView(LoginRequiredMixin, View):
     form_class = forms.TaskCreateForm
     def setup(self, request, id, *args, **kwargs):
         self.task = get_object_or_404(models.TaskModel, id=id)
         return super().setup(request, *args, **kwargs)
-    def dispatch(self, request, *args, **kwargs):
-        if request.user != self.task.user:
-            return PermissionDenied()
-        return super().dispatch(request, *args, **kwargs)
+    def get(self, request, id):
+        form = self.form_class(instance=self.task)
+        return render(request, "components/task-edit-form.html", {"task": self.task, "task_form": form})
     def post(self, request, id):
         form = self.form_class(instance=self.task, data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect("dashboard:overview")
+            return render(request, "components/task.html", {"task": self.task})
         else:
             print(form.errors)
+
+class TaskDoneView(LoginRequiredMixin, View):
+    def setup(self, request, id, *args, **kwargs):
+        self.task = get_object_or_404(models.TaskModel, id=id)
+        return super().setup(request, *args, **kwargs)
+
+    def post(self, request, id):
+        self.task.is_done = not self.task.is_done
+        self.task.save()
+        return render(request, "components/task.html", {"task": self.task})
