@@ -25,6 +25,16 @@ class DashboardOverview(LoginRequiredMixin, View):
         }
         return render(request, "dashboard/overview.html", context=context)
 
+class DashboardTasksView(LoginRequiredMixin, View):
+    def get(self, request):
+        form = forms.TaskCreateForm()
+        context = {
+            "tasks": request.user.tasks.filter(is_done=False).order_by_date(),
+            "task_form": form,
+            "today": jdate.today()
+        }
+        return render(request, "dashboard/tasks.html", context)
+
 class PinRemoveView(LoginRequiredMixin, View):
     def get(self, request, id):
         pin = get_object_or_404(models.Pin, id=id)
