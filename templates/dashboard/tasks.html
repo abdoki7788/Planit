@@ -8,7 +8,7 @@
 {% block body-style %}bg-[#202429] min-h-[100vh] flex justify-between{% endblock body-style %}
 
 {% block body-content %}
-{% include "components/side-navbar.html" %}
+{% include "components/side-navbar.html" with curr="tasks" %}
 <main id="main" class="w-full mx-auto max-w-[800px] h-screen max-lg:mx-8 scroll overflow-scroll scrollbar-hide mt-6">
 	<h1 class="text-3xl font-lalezar text-white relative">
 		لیست کار ها
