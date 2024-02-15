@@ -23,7 +23,7 @@
 				</div>
 				{{ pin.name }}
 
-				<a href="{% url "dashboard:pin-remove" pin.id %}"
+				<a href="{% url "dashboard:pin-delete" pin.id %}"
 					class="w-8 h-8 rounded-full bg-purple-300 bg-opacity-10 flex justify-center items-center text-purple-300 mx-2 absolute left-1 hover:bg-opacity-20 cursor-pointer">
 					<i class="ti ti-x"></i>
 				</a>
@@ -93,6 +93,11 @@
 			</div>
 		</div>
 	</header>
+	<div id="reminders" class="mt-8">
+		{% for reminder in today_reminders %}
+		{% include "components/reminder.html" with reminder=reminder %}
+		{% endfor %}
+	</div>
 
 	<div id="lists" class="flex mt-16 mx-auto">
 		<div class="flex-grow flex flex-col items-center mx-4">

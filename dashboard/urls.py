@@ -4,7 +4,11 @@ from . import views
 app_name = "dashboard"
 urlpatterns = [
     path("", views.DashboardOverview.as_view(), name="overview"),
-    path("pins/<int:id>/", views.PinRemoveView.as_view(), name="pin-remove"),
+    path("pins/<int:id>/delete/", views.PinRemoveView.as_view(), name="pin-delete"),
+
+    path("reminders/<int:id>/delete/", views.ReminderDeleteView.as_view(), name="reminder-remove"),
+    path("reminders/<int:id>/redeclare/", views.ReminderRedeclareView.as_view(), name="reminder-redeclare"),
+
     path("tasks/", views.DashboardTasksView.as_view(), name="tasks-list"),
     path("tasks/add/", views.TaskAddView.as_view(), name="task-add"),
     path("tasks/<int:id>/", views.TaskEditView.as_view(), name="task-edit"),
