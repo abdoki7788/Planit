@@ -18,6 +18,12 @@
                     پروژه ها
                 </a>
             </li>
+			<li class="my-1">
+				<a href="{% url "dashboard:reminders-list" %}" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]  {% if curr == "reminders" %} border border-gray-600 bg-[#2F3741]{% else %} {{ curr }} {% endif %}">
+					<i class="ti ti-clock text-xl mx-1 text-amber-300 "></i>
+					یادآور ها
+				</a>
+			</li>
             <li class="my-1">
                 <a href="{% url "dashboard:tasks-list" %}" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]  {% if curr == "tasks" %} border border-gray-600 bg-[#2F3741]{% else %} {{ curr }} {% endif %}">
                     <i class="ti ti-list-check text-xl mx-1 text-green-300"></i>

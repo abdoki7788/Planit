@@ -147,4 +147,4 @@ TAILWIND_APP_NAME = 'theme'
 LOGIN_URL = "accounts:login"
 
 AUTH_USER_MODEL = "accounts.User"
-LOGIN_REDIRECT_URL = "landing:home"
+LOGIN_REDIRECT_URL = "dashboard:overview"

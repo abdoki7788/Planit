@@ -20,8 +20,8 @@ class DashboardOverview(LoginRequiredMixin, View):
 
             "pins": user.pins.filter(untill__gte=jdate.today(), is_pinned=True),
             "today": jdate.today(),
-            "task_form": forms.TaskCreateForm(),
 
+            "task_form": forms.TaskCreateForm(),
             "tasks": user.tasks.filter(for_date=jdate.today()),
             "today_reminders": user.reminders.filter(remind_date=jdate.today(), status="a")
         }
@@ -36,6 +36,15 @@ class DashboardTasksView(LoginRequiredMixin, View):
             "today": jdate.today()
         }
         return render(request, "dashboard/tasks.html", context)
+
+class DashboardRemindersView(LoginRequiredMixin, View):
+    def get(self, request):
+        context = {
+            "reminders": request.user.reminders.exclude(status="d"),
+            "reminder_form": forms.ReminderForm,
+            "today": jdate.today()
+        }
+        return render(request, "dashboard/reminders.html", context=context)
 
 class PinRemoveView(LoginRequiredMixin, View):
     def get(self, request, id):
