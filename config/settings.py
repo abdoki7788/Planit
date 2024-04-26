@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "tailwind",
     "colorfield",
+    "django_filters",
 
     ## Apps
     "theme.apps.ThemeConfig",

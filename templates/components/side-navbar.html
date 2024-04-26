@@ -13,9 +13,9 @@
             </li>
             <div class="h-[1px] w-full bg-gray-700 my-2"></div>
             <li class="my-1">
-                <a href="/" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]  {% if curr == "projects" %} border border-gray-600 bg-[#2F3741]{% else %} {{ curr }} {% endif %}">
-                    <i class="ti ti-code text-xl mx-1 text-gray-300 "></i>
-                    پروژه ها
+                <a href="{% url "dashboard:tasks-list" %}" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]  {% if curr == "tasks" %} border border-gray-600 bg-[#2F3741]{% else %} {{ curr }} {% endif %}">
+                    <i class="ti ti-list-check text-xl mx-1 text-green-300"></i>
+                    کار ها
                 </a>
             </li>
 			<li class="my-1">
@@ -25,9 +25,9 @@
 				</a>
 			</li>
             <li class="my-1">
-                <a href="{% url "dashboard:tasks-list" %}" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]  {% if curr == "tasks" %} border border-gray-600 bg-[#2F3741]{% else %} {{ curr }} {% endif %}">
-                    <i class="ti ti-list-check text-xl mx-1 text-green-300"></i>
-                    کار ها
+                <a href="/" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]  {% if curr == "projects" %} border border-gray-600 bg-[#2F3741]{% else %} {{ curr }} {% endif %}">
+                    <i class="ti ti-code text-xl mx-1 text-gray-300 "></i>
+                    پروژه ها
                 </a>
             </li>
             <li class="my-1">

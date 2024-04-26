@@ -14,7 +14,7 @@ class DashboardOverview(LoginRequiredMixin, View):
         user = request.user
         context = {
             "today_tasks_count": cen(user.tasks.filter(for_date=jdate.today(), is_done=False).count()),
-            "reminders_count": cen(user.reminders.count()),
+            "reminders_count": cen(user.reminders.exclude(status="d").count()),
             "pins_count": cen(user.pins.count()),
             "overdue_tasks_count": cen(user.tasks.filter(for_date__lt=jdate.today(), is_done=False).count()),
 
@@ -71,12 +71,14 @@ class ReminderRedeclareView(LoginRequiredMixin, View):
         form = self.form_class(instance=self.reminder)
         return render(request, "components/reminder-redeclare-form.html", {"reminder": self.reminder, "reminder_form": form})
     def post(self, request, id):
-        form = self.form_class(instance=self.reminder, data=request.POST)
-        if form.is_valid():
-            if form.cleaned_data["remind_date"] != self.reminder.remind_date:
-                form.cleaned_data["status"] = "r"
-            form.save()
+        reminder_form = self.form_class(instance=self.reminder, data=request.POST)
+        if reminder_form.is_valid():
+            ins = reminder_form.save(commit=False)
+            ins.status = "r"
+            ins.save()
             return render(request, "components/reminder.html", {"reminder": self.reminder})
+        else:
+            print("error occured")
 
 
 

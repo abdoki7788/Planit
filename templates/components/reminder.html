@@ -1,10 +1,10 @@
 <div id="reminder-{{ reminder.id }}"
-	class="w-full p-2 bg-amber-300 bg-opacity-5 border border-y-0 border-x-2 border-amber-300 text-amber-50 flex items-center text-sm relative">
+	class="w-full p-2 bg-amber-300 bg-opacity-5 border border-y-0 border-x-2 {% if reminder.status == "a" %} border-amber-300 {% elif reminder.status == "d" %} border-green-300 {% elif reminder.status == "r" %} border-red-300 {% endif %} text-amber-50 flex items-center text-sm relative">
 	<div
 		class="w-8 h-8 rounded-full bg-amber-300 bg-opacity-10 flex justify-center items-center text-amber-300 mx-2">
 		<i class="ti ti-alarm"></i>
 	</div>
-	{{ reminder.name }}
+	{{ reminder.name }} {{ reminder.status }}
 
 	<a hx-post="{% url "dashboard:reminder-remove" reminder.id %}" hx-target="#reminder-{{ reminder.id }}" hx-swap="outerHTML"
 		class="w-8 h-8 rounded-full bg-amber-300 bg-opacity-10 flex justify-center items-center text-amber-300 mx-2 absolute left-1 hover:bg-opacity-20 cursor-pointer">

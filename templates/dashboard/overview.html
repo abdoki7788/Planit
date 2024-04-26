@@ -32,7 +32,7 @@
 		</div>
 		<div class="flex justify-between mt-8 max-lg:flex-wrap-reverse">
 			<div class="flex w-full max-lg:flex-wrap max-lg:justify-center">
-				<a href="/ "
+				<a href="{% url "dashboard:tasks-list" %}"
 					class="bg-cyan-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-cyan-200 min-w-[8rem] max-lg:min-w-[10rem] mx-3 max-lg:my-2 rounded-lg flex flex-col justify-center items-center">
 					<div>
 						<span
@@ -44,7 +44,7 @@
 					<span class="text-cyan-300 mt-8 max-lg:mt-4">{{ today_tasks_count }}</span>
 				</a>
 
-				<a href="/ "
+				<a href="{% url "dashboard:reminders-list" %}"
 					class="bg-amber-300 bg-opacity-10 font-lalezar py-4 px-2 border hover:bg-opacity-5 transition cursor-pointer border-amber-200 min-w-[8rem] max-lg:min-w-[10rem] mx-3 max-lg:my-2 rounded-lg flex flex-col justify-center items-center">
 					<div>
 						<span
