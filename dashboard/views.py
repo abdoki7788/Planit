@@ -3,6 +3,7 @@ from django.shortcuts import HttpResponse, get_object_or_404, redirect, render
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . import models
+from . import filters
 from . import forms
 from jdatetime import date as jdate
 from persian import convert_en_numbers as cen
@@ -23,15 +24,21 @@ class DashboardOverview(LoginRequiredMixin, View):
 
             "task_form": forms.TaskCreateForm(),
             "tasks": user.tasks.filter(for_date=jdate.today()),
-            "today_reminders": user.reminders.filter(remind_date=jdate.today(), status="a")
+            "today_reminders": user.reminders.filter(remind_date=jdate.today()).exclude(status="d")
         }
         return render(request, "dashboard/overview.html", context=context)
 
 class DashboardTasksView(LoginRequiredMixin, View):
     def get(self, request):
         form = forms.TaskCreateForm()
+        if not request.GET.get("is_done"):
+            f = filters.TaskFilter(request.GET, queryset=request.user.tasks.filter(is_done=False).order_by("-for_date"))
+        else:
+            f = filters.TaskFilter(request.GET, queryset=request.user.tasks.order_by("-for_date"))
+
         context = {
-            "tasks": request.user.tasks.filter(is_done=False).order_by_date(),
+            "tasks": f.qs,
+            "filter_data": f.data,
             "task_form": form,
             "today": jdate.today()
         }
@@ -39,8 +46,14 @@ class DashboardTasksView(LoginRequiredMixin, View):
 
 class DashboardRemindersView(LoginRequiredMixin, View):
     def get(self, request):
+        if not request.GET.get("status"):
+            f = filters.ReminderFilter(request.GET, queryset=request.user.reminders.exclude(status="d"))
+        else:
+            f = filters.ReminderFilter(request.GET, queryset=request.user.reminders.all())
+            print(f.__dict__)
         context = {
-            "reminders": request.user.reminders.exclude(status="d"),
+            "reminders": f.qs,
+            "filter_data": f.data,
             "reminder_form": forms.ReminderForm,
             "today": jdate.today()
         }

@@ -4,7 +4,7 @@
 		class="w-8 h-8 rounded-full bg-amber-300 bg-opacity-10 flex justify-center items-center text-amber-300 mx-2">
 		<i class="ti ti-alarm"></i>
 	</div>
-	{{ reminder.name }} {{ reminder.status }}
+	{{ reminder.name }}
 
 	<a hx-post="{% url "dashboard:reminder-remove" reminder.id %}" hx-target="#reminder-{{ reminder.id }}" hx-swap="outerHTML"
 		class="w-8 h-8 rounded-full bg-amber-300 bg-opacity-10 flex justify-center items-center text-amber-300 mx-2 absolute left-1 hover:bg-opacity-20 cursor-pointer">
