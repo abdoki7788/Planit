@@ -1,4 +1,5 @@
 from django.core.exceptions import PermissionDenied
+from django.db.models import Q
 from django.shortcuts import HttpResponse, get_object_or_404, redirect, render
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -32,7 +33,7 @@ class DashboardTasksView(LoginRequiredMixin, View):
     def get(self, request):
         form = forms.TaskCreateForm()
         if not request.GET.get("is_done"):
-            f = filters.TaskFilter(request.GET, queryset=request.user.tasks.filter(is_done=False).order_by("-for_date"))
+            f = filters.TaskFilter(request.GET, queryset=request.user.tasks.exclude( Q(is_done=True) & ~Q(for_date=jdate.today())).order_by("-for_date"))
         else:
             f = filters.TaskFilter(request.GET, queryset=request.user.tasks.order_by("-for_date"))
 
