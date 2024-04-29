@@ -1,4 +1,5 @@
 {% load static tailwind_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 	<head>
@@ -8,10 +9,10 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link rel="shortcut icon" type="image/png" href="{% static 'logos/favicon.png' %}"/>
 		<link rel="stylesheet" href="{% static "tabler-icons/tabler-icons.min.css" %}">
-		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-		<script src="https://unpkg.com/htmx.org@1.9.10"></script>
-		<link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
-		<script type="text/javascript" src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
+		<script defer src="{% static "scripts/alpine.js" %}"></script>
+		<script src="{% static "scripts/htmx.min.js" %}"></script>
+		<link rel="stylesheet" href="{% static "css/extra/jalalidatepicker.min.css" %}">
+		<script type="text/javascript" src="{% static "scripts/jalalidatepicker.min.js" %}"></script>
 		{% tailwind_css %}
 	</head>
 
@@ -26,5 +27,5 @@
 	})
     </script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+	<script src="{% static "scripts/flowbite.min.js" %}"></script>
 </html>
