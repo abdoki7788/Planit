@@ -7,20 +7,20 @@
         <ul id="menu" class="flex flex-col w-full my-2">
             <li class="my-1">
 				<a href="{% url "dashboard:overview" %}" class="w-full p-1.5  flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741] {% if curr == "overview" %} border border-gray-600 bg-[#2F3741]{% else %} {{ curr }} {% endif %}">
-                    <i class="ti ti-home text-xl mx-1 text-cyan-300"></i>
+                    <i class="ti ti-home text-xl mx-1 text-gray-300"></i>
                     نمای کلی
                 </a>
             </li>
             <div class="h-[1px] w-full bg-gray-700 my-2"></div>
             <li class="my-1">
                 <a href="{% url "dashboard:tasks-list" %}" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]  {% if curr == "tasks" %} border border-gray-600 bg-[#2F3741]{% else %} {{ curr }} {% endif %}">
-                    <i class="ti ti-list-check text-xl mx-1 text-green-300"></i>
+                    <i class="ti ti-list-check text-xl mx-1 text-gray-300"></i>
                     کار ها
                 </a>
             </li>
 			<li class="my-1">
 				<a href="{% url "dashboard:reminders-list" %}" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]  {% if curr == "reminders" %} border border-gray-600 bg-[#2F3741]{% else %} {{ curr }} {% endif %}">
-					<i class="ti ti-clock text-xl mx-1 text-amber-300 "></i>
+					<i class="ti ti-clock text-xl mx-1 text-gray-300 "></i>
 					یادآور ها
 				</a>
 			</li>
@@ -32,13 +32,13 @@
             </li>
             <li class="my-1">
                 <a href="/" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]">
-                    <i class="ti ti-calendar-event text-xl mx-1 text-purple-400"></i>
-                    تقویم
+                    <i class="ti ti-calendar-event text-xl mx-1 text-gray-300"></i>
+                    لیست ها
                 </a>
             </li>
             <li class="my-1">
                 <a href="/" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]">
-                    <i class="ti ti-note text-xl mx-1 text-emerald-300"></i>
+                    <i class="ti ti-note text-xl mx-1 text-gray-300"></i>
                     یادداشت ها
                 </a>
             </li>
