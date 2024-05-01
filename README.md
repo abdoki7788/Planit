@@ -11,8 +11,8 @@ There are some features that will be add in the future
 
  - [x] Todo
  - [x] Reminders
+ - [x] Notes
  - [ ] Project Management
- - [ ] Notes
  - [ ] Habit Tracker
  - [ ] Goal Tracking
  - [ ] Watch/Read Lists

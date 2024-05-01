@@ -10,3 +10,8 @@ class ReminderForm(forms.ModelForm):
     class Meta:
         model = models.Reminder
         fields = ["name", "description", "remind_date"]
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = models.Note
+        fields = ["title", "description"]

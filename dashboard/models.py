@@ -109,3 +109,10 @@ class Pin(models.Model):
     class Meta:
         verbose_name = "سنجاق"
         verbose_name_plural = "سنجاق ها "
+
+
+class Note(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notes")
+    date_added = jDateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=64)
+    description = models.TextField()

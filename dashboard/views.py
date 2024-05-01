@@ -60,6 +60,53 @@ class DashboardRemindersView(LoginRequiredMixin, View):
         }
         return render(request, "dashboard/reminders.html", context=context)
 
+class DashboardNotesView(LoginRequiredMixin, View):
+    def get(self, request):
+        context = {
+            "notes": request.user.notes.all(),
+            "note_form": forms.NoteForm,
+            "today": jdate.today()
+        }
+        return render(request, "dashboard/notes.html", context=context)
+
+
+class NoteAddView(LoginRequiredMixin, View):
+    form_class = forms.NoteForm
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            note = form.save(commit=False)
+            note.user = request.user
+            note.save()
+            return render(request, "components/note.html", {"note": note})
+        else:
+            print(form.errors)
+
+
+class NoteEditView(LoginRequiredMixin, View):
+    form_class = forms.NoteForm
+    def setup(self, request, id, *args, **kwargs):
+        self.note = get_object_or_404(models.Note, id=id)
+        return super().setup(request, *args, **kwargs)
+    def get(self, request, id):
+        form = self.form_class(instance=self.note)
+        return render(request, "components/note-edit-form.html", {"note": self.note, "note_form": form})
+    def post(self, request, id):
+        form = self.form_class(instance=self.note, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, "components/note.html", {"note": self.note})
+        else:
+            print(form.errors)
+
+
+class NoteDeleteView(LoginRequiredMixin, View):
+    def post(self, request, id):
+        note = get_object_or_404(models.Note, id=id)
+        note.delete()
+        return HttpResponse("")
+
+
 class PinRemoveView(LoginRequiredMixin, View):
     def get(self, request, id):
         pin = get_object_or_404(models.Pin, id=id)
@@ -93,6 +140,19 @@ class ReminderRedeclareView(LoginRequiredMixin, View):
             return render(request, "components/reminder.html", {"reminder": self.reminder})
         else:
             print("error occured")
+
+
+class ReminderAddView(LoginRequiredMixin, View):
+    form_class = forms.ReminderForm
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            reminder = form.save(commit=False)
+            reminder.user = request.user
+            reminder.save()
+            return render(request, "components/reminder.html", {"reminder": reminder})
+        else:
+            print(form.errors)
 
 
 
@@ -140,3 +200,5 @@ class TaskDoneView(LoginRequiredMixin, View):
         self.task.is_done = not self.task.is_done
         self.task.save()
         return render(request, "components/task.html", {"task": self.task})
+
+

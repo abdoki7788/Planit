@@ -25,6 +25,12 @@
 				</a>
 			</li>
             <li class="my-1">
+                <a href="{% url "dashboard:notes-list" %}" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741] {% if curr == "notes" %} border border-gray-600 bg-[#2F3741]{% else %} {{ curr }} {% endif %} ">
+                    <i class="ti ti-note text-xl mx-1 text-gray-300"></i>
+                    یادداشت ها
+                </a>
+            </li>
+            <li class="my-1">
                 <a href="/" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]  {% if curr == "projects" %} border border-gray-600 bg-[#2F3741]{% else %} {{ curr }} {% endif %}">
                     <i class="ti ti-code text-xl mx-1 text-gray-300 "></i>
                     پروژه ها
@@ -34,12 +40,6 @@
                 <a href="/" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]">
                     <i class="ti ti-calendar-event text-xl mx-1 text-gray-300"></i>
                     لیست ها
-                </a>
-            </li>
-            <li class="my-1">
-                <a href="/" class="w-full p-1.5 flex items-center text-menu-item text-sm rounded-md hover:bg-[#2F3741]">
-                    <i class="ti ti-note text-xl mx-1 text-gray-300"></i>
-                    یادداشت ها
                 </a>
             </li>
             <div class="h-[1px] w-full bg-gray-700 my-2"></div>
